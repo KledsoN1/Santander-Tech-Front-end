@@ -1,0 +1,88 @@
+@charset "UTF-8";
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 62.5%;
+}
+
+.content {
+    display: grid;
+    grid-template-areas: 
+     ". . . . ."
+     ". hero . form ."
+     ". hero . form ."
+     ". . . . .";
+     gap: 85px;
+}
+main{
+    grid-area: form;
+
+}
+aside{
+    grid-area: hero;
+}
+body{
+    font-family: 'Roboto' , sans-serif;
+    font-size: 1.6rem;
+}
+aside h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 75px;
+}
+
+aside h1 span, main h2 span{
+    color: #FF5678;
+}
+main{
+    width: 600px;
+    height: 520px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 44px 55px;
+    border-radius: 12px;
+}
+main .actions{
+    display: flex;
+    flex-flow: column;
+}
+
+main .actions a{
+    background-color: rgba(192, 235, 244, 1);
+    height: 55px;
+    font-size: 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 54px;
+
+}
+main .actions a + a {
+    background-color: #FF5678;
+    margin-top: 48px;
+}
+
+main h2{
+    max-width: 430px;
+    font-size: 36px;
+    font-weight: 500px;
+}
+
+main footer p{
+    font-size: 14px;
+    margin-top: 80px;
+    text-align: center;
+}
+
+main footer a{
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
