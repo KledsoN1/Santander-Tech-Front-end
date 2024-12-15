@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanchonete</title>
+  <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7r1FAsXTdqQpl2imOKFU3PHAI5bEjdjpkA&s" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @charset "UTF-8"; 
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    #menu {
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    #mensagem {
+      font-size: 16px;
+    }
+
+    footer{
+        background-color: #0463c9;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+        
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lanchonete - KW</h1>
+  </header>
+
+  <main>
+    <section id="menu">
+      <h2>Menu</h2>
+      <button onclick="incluirPedido()">1 - Incluir Pedido</button>
+      <button onclick="atenderPedido()">2 - Atender Pedido</button>
+      <button onclick="listarPedidos()">3 - Listar Pedidos</button>
+      <button onclick="pesquisarPedido()">4 - Pesquisar Pedido</button>
+      <button onclick="encerrarSistema()">5 - Encerrar</button>
+    </section>
+
+    <section id="output">
+      <h2>Resultado</h2>
+      <div id="mensagem"></div>
+    </section>
+  </main>
+
+    <footer>
+        <p>Site Criado por Kledson Tenório - 01750385 &  Wíviam Eshley - 01751563 </p>
+    </footer>
+
+  <script>
+    let filaPedidos = [];
+
+    function incluirPedido() {
+      if (filaPedidos.length >= 10) {
+        document.getElementById("mensagem").textContent = "A fila já está cheia. Não é possível incluir mais pedidos.";
+        return;
+      }
+      let pedido = prompt("Digite o nome do cliente para o pedido:");
+      if (pedido) {
+        filaPedidos.push(pedido);
+        document.getElementById("mensagem").textContent = `Pedido de ${pedido} incluído na fila.`;
+      } else {
+        document.getElementById("mensagem").textContent = "Nenhum pedido foi adicionado.";
+      }
+    }
+
+    function atenderPedido() {
+      if (filaPedidos.length > 0) {
+        let atendido = filaPedidos.shift();
+        document.getElementById("mensagem").textContent = `Pedido de ${atendido} foi atendido.`;
+      } else {
+        document.getElementById("mensagem").textContent = "Nenhum pedido na fila para atender.";
+      }
+    }
+
+    function listarPedidos() {
+      if (filaPedidos.length > 0) {
+        document.getElementById("mensagem").textContent = `Pedidos na fila: ${filaPedidos.join(", ")}`;
+      } else {
+        document.getElementById("mensagem").textContent = "Nenhum pedido na fila.";
+      }
+    }
+
+    function pesquisarPedido() {
+      let nome = prompt("Digite o nome para pesquisar na fila:");
+      if (nome) {
+        let posicao = filaPedidos.indexOf(nome);
+        if (posicao !== -1) {
+          document.getElementById("mensagem").textContent = `O pedido de ${nome} está na posição ${posicao + 1}.`;
+        } else {
+          document.getElementById("mensagem").textContent = `Pedido de ${nome} não encontrado na fila.`;
+        }
+      } else {
+        document.getElementById("mensagem").textContent = "Nenhum nome foi digitado para pesquisa.";
+      }
+    }
+
+    function encerrarSistema() {
+      if (filaPedidos.length > 0) {
+        document.getElementById("mensagem").textContent = "Não é possível encerrar o sistema enquanto houver pedidos na fila.";
+        return;
+      }
+      if (confirm("Tem certeza que deseja encerrar o sistema?")) {
+        document.getElementById("mensagem").textContent = "Sistema encerrado. Obrigado por usar!";
+      }
+    }
+  </script>
+</body>
+</html>
